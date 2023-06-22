@@ -1,0 +1,72 @@
+<div
+  class="col-mt-mb-2"
+  style="margin-left: 700px; margin-right: 700px;margin-top: 100px;"
+>
+  <h3 class="text-center" style="font-weight: bold;"> Thêm User</h3>
+
+  <form
+    action="/admin/inserUsers"
+    method="POST"
+    style="margin-top: 20px;"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter email"
+        name="email"
+        value="{{u.email}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Mật khẩu:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Enter password"
+        name="passWord"
+        value="{{u.password}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">Họ và tên:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter name"
+        name="name"
+        value="{{u.name}}"
+      />
+    </div>
+    <div class="form-group">
+      <p for="image">Hình ảnh:</p>
+      <img
+        id="img-preview"
+        style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px;"
+        src="{{u.image}}"
+      />
+      <input
+        type="file"
+        class="form-control-file"
+        id="img"
+        name="image"
+        value="{{u.image}}"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/getAllUsers" class="btn btn-default">Cancel</a>
+  </form>
+</div>
+
+<script>
+  const imgInput = document.getElementById('img'); const imgPreview =
+  document.getElementById('img-preview'); imgInput.addEventListener('change', ()
+  => { const file = imgInput.files[0]; const reader = new FileReader();
+  reader.addEventListener("load", function () { imgPreview.src = reader.result;
+  }, false); if (file) { reader.readAsDataURL(file); } });
+</script>

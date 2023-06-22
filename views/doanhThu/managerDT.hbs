@@ -1,0 +1,66 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid row" style="position: relative;">
+    <div class="col-sm-6">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/admin/getAllUsers">IStore</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/admin/getAllUsers">User</a></li>
+        <li><a href="/admin/getAllProducts">Sản Phẩm</a></li>
+        <li><a href="/order/getAllOrderXacNhan">Đơn Hàng</a></li>
+        <li class="active"><a href="/doanhThu/getDoanhThuServer">Danh Thu</a></li>
+        <li><a href="/admin/logout">Đăng xuất</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+<div class="container">
+  <h1 class="text-center">Thống kê doanh thu</h1>
+
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-md-6">
+      <!-- Biểu đồ doanh thu -->
+      <canvas id="doanhthu-chart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <!-- Bảng doanh thu -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Tháng</th>
+            <th>Doanh thu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tháng 1</td>
+            <td>1000$</td>
+          </tr>
+          <tr>
+            <td>Tháng 2</td>
+            <td>1500$</td>
+          </tr>
+          <tr>
+            <td>Tháng 3</td>
+            <td>5000$</td>
+          </tr>
+          <!-- Thêm các dòng dữ liệu khác tại đây -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Định nghĩa dữ liệu cho biểu đồ var doanhThuData = { labels: ["Tháng 1",
+  "Tháng 2","Tháng 3","Tháng 4","Tháng 5", "Tháng 6","Tháng 7","Tháng 8","Tháng
+  9","Tháng 10","Tháng 11","Tháng 12"], datasets: [{ label: 'Doanh thu',
+  data:[3000 ,5000 , 7000, 30000 , 5000 , 30000 , 39999, 50000 , 60000, 30000 ,
+  50000 , 70000], backgroundColor: 'rgba(54, 162, 235, 0.5)', borderColor:
+  'rgba(54, 162, 235, 1)', borderWidth: 1 }] }; // Khởi tạo biểu đồ var ctx =
+  document.getElementById('doanhthu-chart').getContext('2d'); new Chart(ctx, {
+  type: 'bar', data: doanhThuData, options: { scales: { y: { beginAtZero: true }
+  } } });
+</script>

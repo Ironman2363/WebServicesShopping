@@ -1,0 +1,75 @@
+<div
+  class="col-mt-mb-2"
+  style="margin-left: 700px; margin-right: 700px;margin-top: 100px;"
+>
+
+  <h3 class="text-center" style="font-weight: bold;">Thêm Sản Phẩm</h3>
+
+  <form
+    action="/admin/inserProduct"
+    method="POST"
+    style="margin-top: 40px;"
+    enctype="multipart/form-data"
+  >
+    <div class="row">
+      <div class="form-group col-xs-8">
+        <label for="text">Tên Sản Phẩm:</label>
+        <input
+          type=""
+          class="form-control"
+          placeholder="Enter name SP"
+          name="name_product"
+          value="{{products.name_product}}"
+        />
+      </div>
+      <div class="form-group col-xs-4">
+        <label for="text">Loại Sản Phẩm:</label>
+        <select name="type_product" id="" style="height: 33px; ">
+          <option value="Tai nghe">Tai nghe</option>
+          <option value="Điện thoại">Điện thoại</option>
+          <option value="Tivi">Tivi</option>
+          <option value="Tủ lạnh">Tủ lạnh</option>
+          <option value="Máy tính">Máy tính</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="name">Giá Sản Phẩm:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="name"
+        placeholder="Enter Giá"
+        name="price"
+        value="{{products.price}}"
+      />
+    </div>
+
+    <div class="form-group">
+      <p for="image">Hình ảnh:</p>
+      <img
+        id="img-preview"
+        style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px;"
+        src="{{products.image}}"
+      />
+      <input
+        type="file"
+        class="form-control-file"
+        id="img"
+        name="image"
+        value="{{products.image}}"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/getAllProducts" class="btn btn-default">Cancel</a>
+  </form>
+</div>
+
+<script>
+  const imgInput = document.getElementById('img'); const imgPreview =
+  document.getElementById('img-preview'); imgInput.addEventListener('change', ()
+  => { const file = imgInput.files[0]; const reader = new FileReader();
+  reader.addEventListener("load", function () { imgPreview.src = reader.result;
+  }, false); if (file) { reader.readAsDataURL(file); } });
+</script>

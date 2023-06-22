@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/admin/getAllUsers">IStore</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li> <a href="/admin/getAllUsers">User</a></li>
+            <li class="active"><a href="/admin/getAllProducts">Sản Phẩm</a></li>
+            <li><a href="/order/getAllOrderXacNhan">Đơn Hàng</a></li>
+              <li ><a href="/doanhThu/getDoanhThuServer">Danh Thu</a></li>
+                  <li><a href="/admin/logout">Đăng xuất</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class=" text-left float-left" style="margin-top: 20px; margin-bottom: 20px;">
+    <a href="/typeProductAdmin/moveAddTypeSP" class="btn btn-primary">Add Type Product</a>
+</div>
+<table class="table table-striped" style="margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên SP</th>
+            <th>Hình Ảnh</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="">
+        {{#each typeProduct}} 
+        <tr>
+            <td>{{sum @index 1}}</td>
+            <td>{{this.product_type}}</td>
+            <td><img src="{{this.image}}" style="width: 50px; height: 50px; border-radius: 50%;
+                border-color: black; border-width: 10px;" /></td>
+            
+            <td>
+                <a href="/typeProductAdmin/editProduct/{{this._id}}" class="btn btn-primary">Edit</a>
+                <a href="/typeProductAdmin/deleteProduct/{{this._id}}"
+                    onclick="return confirm('Bạn có chắc muốn xóa không ?')" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

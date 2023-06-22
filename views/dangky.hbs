@@ -1,0 +1,73 @@
+<div class="row">
+  <div
+    class="col-mt-mb-2"
+    style="margin-left: 700px; margin-right: 700px;margin-top: 100px;"
+  >
+    <h2 class="text-center" style="font-weight: bold;">Đăng ký</h2>
+    <form
+      action="admin/dangkyAdmin"
+      method="POST"
+      enctype="multipart/form-data"
+      style="margin-top: 20px;"
+    >
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          name="email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          name="passWord"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Họ và tên:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Name"
+          name="name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="image">Hình ảnh:</label>
+        {{!-- <img src="{{user.img}}" alt="" id="img-preview" style="height: 100px; width: 100px;"> --}}
+        <input type="file" class="form-control-file" id="image" name="image" />
+      </div>
+      <div style="color: red; margin-bottom: 15px; ">{{error}}</div>
+      <input
+        type="submit"
+        class="btn btn-primary"
+        value="Đăng Ký"
+        style="width: 100%;"
+      />
+      <a
+        href="/admin/loginAdmin"
+        style="display: flex; justify-content: center; margin: 20px;"
+      >Trở về đăng nhập</a>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  const imgInput = document.getElementById('img'); const imgPreview =
+  document.getElementById('img-preview'); imgInput.addEventListener('change', ()
+  => { const file = imgInput.files[0]; const reader = new FileReader();
+  reader.addEventListener("load", function () { imgPreview.src = reader.result;
+  }, false); if (file) { reader.readAsDataURL(file); } });
+</script>

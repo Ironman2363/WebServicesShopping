@@ -1,0 +1,45 @@
+<div class="row">
+  <div
+    class="col-mt-mb-2"
+    style="margin-left: 700px; margin-right: 700px;margin-top: 100px;"
+  >
+    <h2 class="text-center" style="font-weight: bold;">Đăng Nhập</h2>
+    <form action="/admin/login" method="POST" style="margin-top: 20px;">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          name="email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          name="passWord"
+          required
+        />
+
+      </div>
+      <div style="color: red;">{{error}}</div>
+      <div style=" height: 53px">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng
+          Nhập</button>
+        <a
+          href="/admin"
+          style="display: flex; justify-content: center; margin: 20px;"
+        >Chưa có tài khoản ?</a>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

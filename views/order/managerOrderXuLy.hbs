@@ -1,0 +1,115 @@
+<nav class="navbar navbar-inverse ">
+    <div class="container-fluid row" style="position: relative;">
+        <div class="col-sm-6">
+            <div class="navbar-header">
+                <a class="navbar-brand " href="/admin/getAllUsers">IStore</a>
+            </div>
+            <ul class="nav navbar-nav ">
+                <li><a href="/admin/getAllUsers">User</a></li>
+                <li><a href="/admin/getAllProducts">Sản Phẩm</a></li>
+                <li class="active"><a href="/order/getAllOrderXacNhan">Đơn Hàng</a></li>
+                <li><a href="/doanhThu/getDoanhThuServer">Danh Thu</a></li>
+                    <li><a href="/admin/logout">Đăng xuất</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active" href="/order/getAllOrderXacNhan">Chờ xác nhận đơn hàng</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/order/getAllOrderXuLy"> Đơn hàng đang giao</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/order/getAllOrderDaNhan"> Đơn hàng đã giao </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="/order/getAllOrderDaHuy"> Đơn hàng đã hủy</a>
+    </li>
+</ul>
+<div id="alertContainer"></div>
+
+<table class="table table-striped" style="margin-top: 20px;">
+    {{#if listOrder.length}}
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+
+    <tbody class="">
+        {{#each listOrder}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td><img src={{this.image}} style="width: 50px; height: 50px; border-radius: 50%;
+                border-color: black; border-width: 10px;" /> </td>
+            <td>{{this.nameSP}}</td>
+            <td>{{this.soluongSP}}</td>
+            <td>{{this.giaSP}}$</td>
+            <td>{{this.tongTien}}$</td>
+            <td>
+                <a style="color: gray;">Đơn hàng đang giao</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+{{else}}
+<div style="text-align: center; margin-top: 40px;">
+    <img src="https://bizweb.dktcdn.net/100/352/697/themes/716531/assets/empty-cart.png?1605521376718" alt="No Order Image"
+     />
+       
+</div>
+
+{{/if}}
+</div>
+
+
+<script>
+    function reloadPageWithDelay(delay) {
+        setTimeout(() => {
+            window.location.reload();
+        }, delay);
+    }
+    function confirmOrder(orderId) {
+        fetch('/order/updateOrder/' + orderId, {
+            method: 'PUT',
+            body: JSON.stringify({ status: "xac nhan" }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                // Xử lý phản hồi từ máy chủ
+                if (response.ok) {
+                    // Hiển thị thông báo xác nhận đơn hàng thành công bằng Bootstrap
+                    const alertMessage = `
+                <div class="alert alert-success" role="alert">
+                  <strong> Đơn hàng đã được xác nhận! </strong>
+                </div>
+            `;
+                    document.getElementById('alertContainer').innerHTML = alertMessage;
+
+                    // Thực hiện các hành động khác nếu cần thiết
+                } else {
+                    // Xử lý lỗi nếu có
+                    alert('Xác nhận đơn hàng không thành công!');
+                }
+            })
+        reloadPageWithDelay(2000)
+            .catch(error => {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            });
+    }
+</script>
